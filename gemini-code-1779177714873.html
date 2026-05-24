@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NorthShop - Premium Game Top-Up & Voucher Hub</title>
+    
+    <!-- Mengimport Font Premium Google (Plus Jakarta Sans & Orbitron untuk Gaming) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-darkest: #050507;
+            --bg-main: #0c0c0e;
+            --bg-card: #141417;
+            --bg-input: #1a1a1f;
+            --border-muted: #232329;
+            --border-focus: #4b4b57;
+            --grey-light: #f4f4f5;
+            --grey-text: #a1a1aa;
+            --grey-dark: #52525b;
+            --success: #22c55e;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-logo: 'Orbitron', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--grey-light);
+            line-height: 1.5;
+            padding-bottom: 40px;
+        }
+
+        /* Top Notification Bar */
+        .top-bar {
+            background-color: var(--bg-darkest);
+            border-bottom: 1px solid var(--border-muted);
+            padding: 10px 5%;
+            font-size: 11px;
+            color: var(--grey-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 0.5px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(20, 20, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 18px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-family: var(--font-logo);
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .navbar .logo span {
+            color: var(--grey-dark);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--grey-text);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-focus);
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn:hover {
+            background-color: #ffffff;
+            color: var(--bg-darkest);
+            border-color: #ffffff;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1260px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+
+        /* Ticker Text */
+        .ticker-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ticker-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: var(--border-focus);
+            padding: 4px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .ticker-text {
+            font-size: 13px;
+            color: var(--grey-text);
+            font-weight: 500;
+        }
+
+        /* Section Title Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-muted);
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: var(--font-logo);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--grey-text);
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Game Grid Layout */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border-muted);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .game-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-3px);
+        }
+
+        .game-card.active {
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+        }
+
+        .game-thumb {
+            width: 100%;
+            height: 110px;
+            position: relative;
+            background-color: #1a1a22;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-muted);
+            font-family: var(--font-logo);
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--grey-dark);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 3px 8px;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .game-info {
+            padding: 16px;
+        }
+
+        .game-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .game-publisher {
+            font-size: 11px;
+            color: var(--grey-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Workspace Core Layout */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .workspace-grid {
+                grid-template-columns: 420px 1fr;
+            }
+        }
+
+        .meta-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .module-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-muted);
+        }
+
+        .module-number {
+            font-family: var(--font-logo);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--grey-dark);
+            border: 1px solid var(--border-muted);
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .module-heading {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        /* Inputs Form Control */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--grey-text);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-field {
+            width: 100%;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 14px 16px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .form-field:focus {
+            border-color: var(--border-focus);
+            background-color: var(--bg-darkest);
+        }
+
+        .field-desc {
+            font-size: 11px;
+            color: var(--grey-dark);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Nominal SKU Grid Matrix */
+        .items-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .nominal-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 14px;
+        }
+
+        .nominal-node {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 110px;
+        }
+
+        .nominal-node:hover {
+            border-color: var(--border-focus);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .nominal-node.active {
+            background-color: transparent;
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .node-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .node-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .node-price {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .node-status {
+            font-size: 10px;
+            color: var(--grey-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.04);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .nominal-node.active .node-status {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Payment Framework Structuring */
+        .payment-matrix {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .payment-matrix {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .payment-gate {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .payment-gate:hover {
+            border-color: var(--border-focus);
+        }
+
+        .payment-gate.active {
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .gate-details {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .gate-logo {
+            width: 70px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-logo);
+            font-size: 11px;
+            font-weight: 900;
+            color: #000000;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .gate-info-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gate-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .gate-fee {
+            font-size: 11px;
+            color: var(--grey-dark);
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        .gate-pricing {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: right;
+        }
+
+        /* Invoice Summary Panel */
+        .summary-box {
+            background-color: var(--bg-darkest);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: var(--grey-text);
+            font-weight: 500;
+        }
+
+        .summary-row.total {
+            border-top: 1px solid var(--border-muted);
+            padding-top: 14px;
+            margin-top: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Action Buttons */
+        .btn-checkout {
+            background-color: #ffffff;
+            color: var(--bg-darkest);
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .btn-checkout:hover {
+            background-color: #e4e4e7;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-darkest);
+            border-top: 1px solid var(--border-muted);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--grey-dark);
+            margin-top: 80px;
+            font-weight: 500;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 10px auto 0 auto;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Notification Bar -->
+    <div class="top-bar">
+        <div class="status-indicator">
+            <span class="dot"></span>
+            <span>Sistem Gateway API: Online & Secure</span>
+        </div>
+        <div>Waktu Server: 2026-05-19 15:05 WIB</div>
+    </div>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo">NORTH<span>SHOP</span></a>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#" class="active">Pusat Top-Up</a>
+                <a href="#">Lacak Transaksi</a>
+                <a href="#">Bantuan</a>
+            </div>
+            <button class="nav-btn">Masuk Akun</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Live Alert Box -->
+        <div class="ticker-wrap">
+            <span class="ticker-label">Info Terkini</span>
+            <div class="ticker-text">Seluruh gerbang pembayaran Indonesia aktif. Transaksi diproses otomatis oleh core-engine dalam waktu 15 detik!</div>
+        </div>
+
+        <!-- SECTION 1: MASTER GAME SELECTOR -->
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Pilih Game Terfavorit</h2>
+                <span class="section-subtitle">Pilih katalog produk game untuk memunculkan formulir pesanan otomatis</span>
+            </div>
+        </div>
+
+        <div class="game-grid" id="gameGrid">
+            <!-- Game Cards -->
+            <div class="game-card active" onclick="selectGame(this, 'mlbb', 'Mobile Legends', 'Moonton')">
+                <div class="game-thumb">MLBB<span class="game-badge">Populer</span></div>
+                <div class="game-info">
+                    <div class="game-title">Mobile Legends</div>
+                    <div class="game-publisher">Moonton</div>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="selectGame(this, 'pubgm', 'PUBG Mobile', 'Tencent Games')">
+                <div class="game-thumb">PUBG<span class="game-badge">Hot</span></div>
+                <div class="game-info">
+                    <div class="game-title">PUBG Mobile</div>
+                    <div class="game-publisher">Tencent Games</div>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="selectGame(this, 'hok', 'Honor of Kings', 'Level Infinite')">
+                <div class="game-thumb">HOK<span class="game-badge">New</span></div>
+                <div class="game-info">
+                    <div class="game-title">Honor of Kings</div>
+                    <div class="game-publisher">Level Infinite</div>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="selectGame(this, 'codm', 'COD Mobile', 'Garena')">
+                <div class="game-thumb">CODM</div>
+                <div class="game-info">
+                    <div class="game-title">COD Mobile</div>
+                    <div class="game-publisher">Garena</div>
+                </div>
+            </div>
+
+            <div class="game-card" onclick="selectGame(this, 'roblox', 'Roblox', 'Roblox Corp')">
+                <div class="game-thumb">ROBLOX</div>
+                <div class="game-info">
+                    <div class="game-title">Roblox</div>
+                    <div class="game-publisher">Roblox Corp</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: WORKSPACE ORDER DECK -->
+        <div class="workspace-grid">
+            
+            <div class="meta-panel">
+                <!-- Account Verification Module -->
+                <div class="module-box">
+                    <div class="module-header">
+                        <h3 class="module-heading">Konfigurasi Target</h3>
+                        <span class="module-number">01</span>
+                    </div>
+                    
+                    <div id="dynamicInputs">
+                        <!-- Default MLBB -->
+                        <div class="form-group">
+                            <label class="form-label">User ID & Zone ID</label>
+                            <div class="form-row">
+                                <input type="number" id="userId" class="form-field" placeholder="Masukkan ID">
+                                <input type="number" id="zoneId" class="form-field" placeholder="(Zone)" style="max-width: 110px;">
+                            </div>
+                            <p class="field-desc">Contoh pengisian: ID 12345678 Zone 1234. Cek profil in-game Anda.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Dispatch Module -->
+                <div class="module-box">
+                    <div class="module-header">
+                        <h3 class="module-heading">Alur Notifikasi</h3>
+                        <span class="module-number">02</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" class="form-field" placeholder="Contoh: 081234567890">
+                        <p class="field-desc">Kuitansi digital otomatis akan dikirim ke nomor WhatsApp aktif ini.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="items-showcase">
+                <!-- Nominal Grid Matrix -->
+                <div class="module-box">
+                    <div class="module-header">
+                        <h3 class="module-heading">Pilih SKU / Denominasi Produk</h3>
+                        <span class="module-number">03</span>
+                    </div>
+                    <div class="nominal-matrix" id="nominalGrid"></div>
+                </div>
+
+                <!-- Payment Channels Matrix -->
+                <div class="module-box">
+                    <div class="module-header">
+                        <h3 class="module-heading">Gerbang Pembayaran Indonesia</h3>
+                        <span class="module-number">04</span>
+                    </div>
+                    
+                    <div class="payment-matrix">
+                        <div class="payment-gate" onclick="selectPayment(this, 'QRIS Gateway', 0)">
+                            <div class="gate-details">
+                                <div class="gate-logo" style="background: linear-gradient(135deg, #003057, #007a87); color: white;">QRIS</div>
+                                <div class="gate-info-text">
+                                    <span class="gate-title">QRIS Instan</span>
+                                    <span class="gate-fee">Biaya admin: Rp 0</span>
+                                </div>
+                            </div>
+                            <div class="gate-pricing" id="price-qris">Rp 0</div>
+                        </div>
+
+                        <div class="payment-gate" onclick="selectPayment(this, 'DANA App', 150)">
+                            <div class="gate-details">
+                                <div class="gate-logo" style="background-color: #108ee9; color: white;">DANA</div>
+                                <div class="gate-info-text">
+                                    <span class="gate-title">DANA Wallet</span>
+                                    <span class="gate-fee">Biaya admin: Rp 150</span>
+                                </div>
+                            </div>
+                            <div class="gate-pricing" id="price-dana">Rp 0</div>
+                        </div>
+
+                        <div class="payment-gate" onclick="selectPayment(this, 'OVO E-Wallet', 200)">
+                            <div class="gate-details">
+                                <div class="gate-logo" style="background-color: #4c2a86; color: white;">OVO</div>
+                                <div class="gate-info-text">
+                                    <span class="gate-title">OVO Premier</span>
+                                    <span class="gate-fee">Biaya admin: Rp 200</span>
+                                </div>
+                            </div>
+                            <div class="gate-pricing" id="price-ovo">Rp 0</div>
+                        </div>
+
+                        <div class="payment-gate" onclick="selectPayment(this, 'BCA Virtual Account', 1000)">
+                            <div class="gate-details">
+                                <div class="gate-logo" style="background-color: #0056a3; color: white;">BCA VA</div>
+                                <div class="gate-info-text">
+                                    <span class="gate-title">BCA Virtual Account</span>
+                                    <span class="gate-fee">Biaya admin: Rp 1.000</span>
+                                </div>
+                            </div>
+                            <div class="gate-pricing" id="price-bca">Rp 0</div>
+                        </div>
+
+                        <div class="payment-gate" onclick="selectPayment(this, 'Mandiri Virtual Account', 1000)">
+                            <div class="gate-details">
+                                <div class="gate-logo" style="background-color: #1c2c5b; color: #f2a900;">MANDIRI</div>
+                                <div class="gate-info-text">
+                                    <span class="gate-title">Mandiri VA</span>
+                                    <span class="gate-fee">Biaya admin: Rp 1.000</span>
+                                </div>
+                            </div>
+                            <div class="gate-pricing" id="price-mandiri">Rp 0</div>
+                        </div>
+                    </div>
+
+                    <!-- Complex Invoice Summary -->
+                    <div class="summary-box">
+                        <div class="summary-row">
+                            <span>Item Terpilih:</span>
+                            <span id="summary-item">-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Harga Produk:</span>
+                            <span id="summary-base-price">Rp 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Biaya Admin Gateway:</span>
+                            <span id="summary-fee">Rp 0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Pembayaran:</span>
+                            <span id="summary-total">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-checkout" onclick="executeComplexOrder()">Proses Transaksi Sekarang</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 NORTHSHOP PLATFORM INDUSTRY. ALL RIGHTS RESERVED.</p>
+        <p>Aset game, logo, dan nama dagang Mobile Legends, PUBG, Honor of Kings, CODM, dan Roblox sepenuhnya milik pemegang hak cipta asli developer masing-masing.</p>
+    </footer>
+
+    <script>
+        // EXPANDED CATALOG DATA MATRIX (Banyak Pilihan Lebih Detail)
+        const catalogMatrix = {
+            mlbb: [
+                { title: '5 Diamonds (Receh)', price: 1500, status: 'Tersedia' },
+                { title: '12 Diamonds', price: 3500, status: 'Tersedia' },
+                { title: '50 Diamonds', price: 14000, status: 'Promo' },
+                { title: '86 Diamonds (78 + 8 Bonus)', price: 19800, status: 'Tersedia' },
+                { title: '172 Diamonds (156 + 16 Bonus)', price: 39500, status: 'Tersedia' },
+                { title: '257 Diamonds (234 + 23 Bonus)', price: 58900, status: 'Populer' },
+                { title: '344 Diamonds', price: 78500, status: 'Tersedia' },
+                { title: '706 Diamonds (625 + 81 Bonus)', price: 157200, status: 'Diskon' },
+                { title: '1412 Diamonds', price: 314000, status: 'Sultan' },
+                { title: '2195 Diamonds', price: 489000, status: 'Sultan' },
+                { title: 'Weekly Diamond Pass', price: 27500, status: 'Terlaris' },
+                { title: 'Starlight Member Premium', price: 145000, status: 'Event' },
+                { title: 'Twilight Pass', price: 148500, status: 'Spesial' }
+            ],
+            pubgm: [
+                { title: '30 Unknown Cash (UC)', price: 7000, status: 'Tersedia' },
+                { title: '60 Unknown Cash (UC)', price: 13500, status: 'Tersedia' },
+                { title: '325 Unknown Cash (UC)', price: 64000, status: 'Hemat' },
+                { title: '660 Unknown Cash (UC)', price: 126900, status: 'Populer' },
+                { title: '1800 Unknown Cash (UC)', price: 339000, status: 'Whale' },
+                { title: '3850 Unknown Cash (UC)', price: 699000, status: 'Sultan' },
+                { title: '8100 Unknown Cash (UC)', price: 1375000, status: 'Sultan' },
+                { title: 'Royale Pass Upgrade', price: 149000, status: 'Musiman' }
+            ],
+            hok: [
+                { title: '80 Tokens', price: 14200, status: 'Tersedia' },
+                { title: '240 Tokens', price: 42800, status: 'Tersedia' },
+                { title: '400 Tokens', price: 71000, status: 'Promo' },
+                { title: '800 Tokens', price: 141500, status: 'Tersedia' },
+                { title: '1200 Tokens', price: 211000, status: 'Populer' },
+                { title: '2400 Tokens', price: 422000, status: 'Sultan' },
+                { title: '4800 Tokens', price: 839000, status: 'Sultan' },
+                { title: 'Weekly Card (Premium)', price: 32000, status: 'Untung' }
+            ],
+            codm: [
+                { title: '31 CP Points', price: 7500, status: 'Tersedia' },
+                { title: '63 CP Points', price: 14900, status: 'Tersedia' },
+                { title: '128 CP Points', price: 29500, status: 'Tersedia' },
+                { title: '317 CP Points', price: 74200, status: 'Promo' },
+                { title: '634 CP Points', price: 147000, status: 'Populer' },
+                { title: '1373 CP Points', price: 295000, status: 'Whale' },
+                { title: '3741 CP Points', price: 749000, status: 'Sultan' }
+            ],
+            roblox: [
+                { title: '100 Robux', price: 22000, status: 'Tersedia' },
+                { title: '200 Robux', price: 43000, status: 'Tersedia' },
+                { title: '400 Robux', price: 82500, status: 'Instan' },
+                { title: '800 Robux', price: 161000, status: 'Populer' },
+                { title: '1700 Robux', price: 334000, status: 'Borongan' },
+                { title: '4500 Robux (Gift Card)', price: 890000, status: 'Sultan' },
+                { title: 'Roblox Premium (1 Bulan)', price: 95000, status: 'Spesial' }
+            ]
+        };
+
+        let selectedGameKey = 'mlbb';
+        let baseProductPrice = 0;
+        let selectedProductTitle = '';
+        let currentAdminFee = 0;
+        let finalPaymentMethod = '';
+
+        function selectGame(element, gameKey, gameName, publisher) {
+            selectedGameKey = gameKey;
+            baseProductPrice = 0;
+            selectedProductTitle = '';
+            currentAdminFee = 0;
+            finalPaymentMethod = '';
+
+            const cards = document.querySelectorAll('.game-card');
+            cards.forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+
+            const inputsContainer = document.getElementById('dynamicInputs');
+            if (gameKey === 'mlbb') {
+                inputsContainer.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">User ID & Server ID</label>
+                        <div class="form-row">
+                            <input type="number" id="userId" class="form-field" placeholder="Masukkan ID">
+                            <input type="number" id="zoneId" class="form-field" placeholder="(Zone)" style="max-width: 110px;">
+                        </div>
+                        <p class="field-desc">Contoh pengisian: ID 12345678 Zone 1234. Cek profil in-game Anda.</p>
+                    </div>
+                `;
+            } else if (gameKey === 'roblox') {
+                inputsContainer.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">Username Roblox Anda</label>
+                        <input type="text" id="userId" class="form-field" placeholder="Contoh: PlayerNorth_99">
+                        <p class="field-desc">Pastikan huruf besar/kecil diisi dengan benar.</p>
+                    </div>
+                `;
+            } else {
+                inputsContainer.innerHTML = `
+                    <div class="form-group">
+                        <label class="form-label">Player ID Karakter</label>
+                        <input type="number" id="userId" class="form-field" placeholder="Masukkan Player ID Game">
+                        <p class="field-desc">Masukkan kode angka identifikasi unik yang ada di profil akun game Anda.</p>
+                    </div>
+                `;
+            }
+
+            renderSKUMatrices(gameKey);
+            resetCalculation();
+        }
+
+        function renderSKUMatrices(gameKey) {
+            const container = document.getElementById('nominalGrid');
+            container.innerHTML = '';
+            
+            const skus = catalogMatrix[gameKey];
+            skus.forEach(sku => {
+                const node = document.createElement('div');
+                node.className = 'nominal-node';
+                node.onclick = function() {
+                    const allNodes = document.querySelectorAll('.nominal-node');
+                    allNodes.forEach(n => n.classList.remove('active'));
+                    node.classList.add('active');
+                    
+                    baseProductPrice = sku.price;
+                    selectedProductTitle = sku.title;
+                    
+                    recalculateCheckoutInvoice();
+                };
+
+                node.innerHTML = `
+                    <div class="node-title">${sku.title}</div>
+                    <div class="node-meta">
+                        <div class="node-price">Rp ${sku.price.toLocaleString('id-ID')}</div>
+                        <div class="node-status">${sku.status}</div>
+                    </div>
+                `;
+                container.appendChild(node);
+            });
+        }
+
+        function recalculateCheckoutInvoice() {
+            document.getElementById('price-qris').innerText = 'Rp ' + (baseProductPrice + 0).toLocaleString('id-ID');
+            document.getElementById('price-dana').innerText = 'Rp ' + (baseProductPrice + 150).toLocaleString('id-ID');
+            document.getElementById('price-ovo').innerText = 'Rp ' + (baseProductPrice + 200).toLocaleString('id-ID');
+            document.getElementById('price-bca').innerText = 'Rp ' + (baseProductPrice + 1000).toLocaleString('id-ID');
+            document.getElementById('price-mandiri').innerText = 'Rp ' + (baseProductPrice + 1000).toLocaleString('id-ID');
+
+            const totalFinal = baseProductPrice + currentAdminFee;
+            
+            document.getElementById('summary-item').innerText = selectedProductTitle || '-';
+            document.getElementById('summary-base-price').innerText = 'Rp ' + baseProductPrice.toLocaleString('id-ID');
+            document.getElementById('summary-fee').innerText = 'Rp ' + currentAdminFee.toLocaleString('id-ID');
+            document.getElementById('summary-total').innerText = 'Rp ' + totalFinal.toLocaleString('id-ID');
+        }
+
+        function selectPayment(element, methodName, adminFee) {
+            if (baseProductPrice === 0) {
+                alert('Peringatan: Silakan pilih item / nominal topup terlebih dahulu!');
+                return;
+            }
+            const allGates = document.querySelectorAll('.payment-gate');
+            allGates.forEach(g => g.classList.remove('active'));
+            element.classList.add('active');
+            
+            currentAdminFee = adminFee;
+            finalPaymentMethod = methodName;
+            
+            recalculateCheckoutInvoice();
+        }
+
+        function resetCalculation() {
+            currentAdminFee = 0;
+            finalPaymentMethod = '';
+            const allGates = document.querySelectorAll('.payment-gate');
+            allGates.forEach(g => g.classList.remove('active'));
+            recalculateCheckoutInvoice();
+        }
+
+        function executeComplexOrder() {
+            const userRef = document.getElementById('userId');
+            const zoneRef = document.getElementById('zoneId');
+            const waRef = document.getElementById('whatsapp');
+
+            if (!userRef || !userRef.value) {
+                alert('Gagal: Target Akun / ID Game wajib diisi!');
+                return;
+            }
+            if (selectedGameKey === 'mlbb' && (!zoneRef || !zoneRef.value)) {
+                alert('Gagal: Zone ID Mobile Legends belum diisi!');
+                return;
+            }
+            if (baseProductPrice === 0) {
+                alert('Gagal: Pilih nominal item game yang mau Anda beli!');
+                return;
+            }
+            if (!finalPaymentMethod) {
+                alert('Gagal: Tentukan metode pembayaran Anda!');
+                return;
+            }
+            if (!waRef || !waRef.value) {
+                alert('Gagal: Nomor WhatsApp wajib diisi agar sistem bisa mengirim struk!');
+                return;
+            }
+
+            let fullAccountMeta = userRef.value;
+            if (selectedGameKey === 'mlbb') {
+                fullAccountMeta += ` (${zoneRef.value})`;
+            }
+
+            const totalFinalInvoice = baseProductPrice + currentAdminFee;
+            alert(`[NORTHSHOP SUCCESS]\n====================\nGame: ${selectedGameKey.toUpperCase()}\nTarget ID: ${fullAccountMeta}\nItem: ${selectedProductTitle}\nMetode: ${finalPaymentMethod}\nTotal Bayar: Rp ${totalFinalInvoice.toLocaleString('id-ID')}\n====================\nFrontend Selesai! Hubungkan Web Anda ke API Supplier.`);
+        }
+
+        window.onload = function() {
+            renderSKUMatrices('mlbb');
+            recalculateCheckoutInvoice();
+        };
+    </script>
+</body>
+</html>
